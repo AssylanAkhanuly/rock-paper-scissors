@@ -1,0 +1,21 @@
+.login {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    width: fit-content;   
+
+    text-align: center;
+
+    background-color: var(--acidColor);
+    border-radius: 10px;
+    overflow: hidden;
+
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    
+}
+
+.login-content {
+    padding: 10px;
+}

@@ -1,0 +1,76 @@
+@font-face {
+  font-family: "HUN";
+  src: url("./assets/HunDIN1451.ttf");
+}
+@font-face {
+    font-family: "PFW";
+    src: url("./assets/pfw.ttf");
+  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "HUN";
+}
+
+:root {
+  --baseColor: #000000;
+  --acidColor: #fff;
+
+  --primarySize: 36px;
+  --secondarySize: 28px;
+  --ternarySize: 20px;
+}
+
+.App {
+  height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+h1 {
+    margin: 10px 0;
+  font-size: var(--secondarySize);
+  font-weight: 500;
+  word-spacing: 8px;
+}
+
+p {
+  font-size: var(--ternarySize);
+  color: #aaa;
+  text-align: left;
+  word-spacing: 8px;
+}
+
+input {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+
+  color: var(--acidColor);
+  text-align: left;
+  font-size: var(--secondarySize);
+
+  background-color: var(--baseColor);
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+button {
+  padding: 10px;
+  width: 100%;
+
+  font-size: var(--primarySize);
+  background-color: #ccc;
+  border: none;
+
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #aaa;
+}

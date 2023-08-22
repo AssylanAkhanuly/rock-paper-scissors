@@ -1,0 +1,124 @@
+.chat {
+  padding: 10px;
+  position: absolute;
+  left: 0;
+  top: 20px;
+  bottom: 50px;
+  width: 20%;
+  min-width: 200px;
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: "PFW";
+
+  background: rgba(0, 0, 0, 50%);
+  border-radius: 5px;
+
+  opacity: 0.5;
+  transition: 1s;
+}
+
+.chat:hover {
+  opacity: 1;
+  transition: 1s;
+}
+
+
+
+.chat:hover > .chat-title {
+  opacity: 1;
+  transition: 1s;
+}
+
+.chat:hover > .chat-desc {
+  opacity: 1;
+  transition: 1s;
+}
+
+.chat:hover > .chat-actions {
+  opacity: 1;
+  transition: 1s;
+}
+
+.chat-title {
+  font-size: var(--primarySize);
+  color: var(--acidColor);
+  font-weight: bold;
+
+  opacity: 0;
+  transition: 1s;
+}
+
+.chat-desc {
+  padding: 5px;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  border: 1px solid grey;
+  border-radius: 5px;
+  word-spacing: normal;
+  opacity: 0;
+  transition: 1s;
+}
+
+.chat-actions {
+  margin-top: auto;
+
+  font-family: inherit;
+
+  overflow-y: auto;
+  opacity: 0.4;
+  transition: 1s;
+}
+.chat-action {
+  margin-top: 5px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+
+  font-family: inherit;
+}
+
+.chat-action-user {
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: bold;
+  word-spacing: normal;
+}
+
+.chat-action-event {
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: bold;
+  font-style: italic;
+  word-spacing: normal;
+}
+
+.chat:hover > ::-webkit-scrollbar {
+  transition: 1s;
+  width: 3px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+  transition: 1s;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #aaa;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

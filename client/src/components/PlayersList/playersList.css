@@ -1,0 +1,108 @@
+.playersList {
+  padding: 10px;
+  padding-right: 0;
+  position: absolute;
+  right: 0;
+  top: 20px;
+  bottom: 50px;
+  width: 20%;
+  min-width: 200px;
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: "PFW";
+
+  background: rgba(0, 0, 0, 50%);
+  border-radius: 5px;
+
+  opacity: 1;
+  transition: 1s;
+}
+
+.playersList-title {
+  font-size: var(--primarySize);
+  color: var(--acidColor);
+  font-weight: normal;
+}
+
+.player-list-item {
+  background-color: #372b51;
+  border-top: 3px solid #453469;
+  border-right: 3px solid #302742;
+  border-bottom: 3px solid #211c2c;
+  box-shadow: 0 0 8px #000;
+  font-family: HUN;
+  border-radius: 3px 0px 0px 3px;
+  padding-top: 0.3em;
+  padding-bottom: 0.1em;
+  padding-left: 2em;
+  padding-right: 0.5em;
+  margin-bottom: 0.5em;
+  position: relative;
+  cursor: pointer;
+  animation: 0.5s FlyInLeft cubic-bezier(0, 0.55, 0.4, 1);
+}
+
+.player-list {
+  list-style: none;
+}
+
+.player-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.player-info{
+  display: flex;
+  justify-content: flex-start;
+  gap:  5px;
+}
+
+.player-iter {
+  font-size: 1.5em;
+  color: #d9bef3;
+}
+
+.player-name {
+  font-size: 1.5em;
+  color: #d9bef3;
+  font-size: bold;
+}
+.player-score {
+  padding: 2px 4px 1px 4px;
+  margin: 5px 0;
+
+  width: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  font-weight: 900;
+  font-size: var(--secondarySize);
+  color: #000;
+
+  box-shadow: 0 0 8px #d9bef3;
+  background-color: #d9bef3;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  background: transparent;
+  transition: 1s;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #aaa;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

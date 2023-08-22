@@ -1,0 +1,100 @@
+.footer {
+  position: relative;
+  height: 50px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 10px;
+
+  background: linear-gradient(to bottom, #181726 0, #2a284a 100%);
+  border-top: 2px solid #282646;
+  box-shadow: 0 0 8px #000;
+  transition: 0.3s bottom;
+}
+
+.footer-text {
+  color: #9d97f3;
+  font-size: 1.75em;
+}
+
+#room_switchbracket {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  text-align: center;
+  min-width: 6em;
+  width: 20%;
+  transform: translateY(0);
+  color: #b190e2;
+  font-family: HUN;
+  font-size: 2.2em;
+  filter: brightness(1) drop-shadow(0px -2px #16101e)
+    drop-shadow(-2px 0px #16101e) drop-shadow(2px 0px #16101e)
+    drop-shadow(0px 4px 8px #0004);
+  transition: 0.5s transform, 0.5s filter, 0.5s opacity;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  cursor: pointer;
+  font-weight: 900;
+  z-index: 10;
+}
+
+#room_switchbracket::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, #2e1c49 0, #221437 100%);
+  clip-path: polygon(0 100%, 0% 0, 90% 0, 100% 100%);
+  z-index: -1;
+}
+
+#swb_addendum {
+  font-weight: 500;
+  color: #634c85;
+  font-size: 0.35em;
+}
+
+#room_ingame_warning {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  text-align: center;
+  min-width: 12em;
+  width: 40%;
+  transform: translate(-50%, 0);
+  color: #b190e2;
+  font-family: HUN;
+  font-size: 2.2em;
+  filter: brightness(1) drop-shadow(0px -2px #16101e)
+    drop-shadow(-2px 0px #16101e) drop-shadow(2px 0px #16101e)
+    drop-shadow(0px 4px 8px #0004);
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  font-weight: 900;
+  z-index: 10;
+  transition: 0.5s transform, 0.5s filter, 0.5s opacity;
+}
+#room_ingame_warning::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0, #0008 100%),
+    repeating-linear-gradient(
+      -45deg,
+      #2e1c49,
+      #2e1c49 10px,
+      #221437 10px,
+      #221437 20px
+    );
+  clip-path: polygon(0 100%, 5% 0, 95% 0, 100% 100%);
+  z-index: -1;
+}
