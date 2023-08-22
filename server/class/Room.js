@@ -8,7 +8,8 @@ export const USER_READY = "USER_READY";
 export const USER_SELECTED = "USER_SELECTED";
 export const USER_WIN = "WIN!";
 export const USER_LOST = "YOU LOSE";
-export const USER_TIE = "TIE!";
+export const TIE = "TIE";
+export const RESTART = "RESTART";
 
 //STATES
 const WAITING = "NO INGAME";
@@ -41,15 +42,17 @@ export class Room {
       user: newUser.data,
     });
 
-    if (this.getAllUsers().length >= this.maxUser) {
-      this.state = GAME_PRESTART;
-      this.sendAll({
-        type: GAME_PRESTART,
-        message: { name: "GAME:", action: "game will start soon" },
-      });
-    }
+    if (this.getAllUsers().length >= this.maxUser) this.prestartGame();
 
     return newUser;
+  }
+
+  prestartGame() {
+    this.state = GAME_PRESTART;
+    this.sendAll({
+      type: GAME_PRESTART,
+      message: { name: "GAME:", action: "game will start soon" },
+    });
   }
 
   disconnectUser(connectionID) {
@@ -77,11 +80,11 @@ export class Room {
   finishGame() {
     this.state = GAME_FINISH;
     const { winners, loosers, isTie } = whoWin(this.connections);
-    console.log("tie", isTie)
+    console.log("tie", isTie);
     if (isTie) {
-      this.state = USER_TIE;
+      this.state = TIE;
       this.sendAll({
-        type: USER_TIE,
+        type: TIE,
         message: { name: "Game:", action: "Tie" },
       });
     } else {
@@ -138,6 +141,7 @@ export class Room {
         ...message,
         users: this.getAllUsers(),
         state: this.state,
+        user: user.data,
       })
     );
   }
@@ -160,5 +164,9 @@ export class Room {
 
     if (nonSelectedUser) return false;
     return true;
+  }
+
+  resetUsers() {
+    this.connections.map((user) => user.reset());
   }
 }

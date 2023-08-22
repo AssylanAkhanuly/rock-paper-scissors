@@ -3,9 +3,9 @@
   src: url("./assets/HunDIN1451.ttf");
 }
 @font-face {
-    font-family: "PFW";
-    src: url("./assets/pfw.ttf");
-  }
+  font-family: "PFW";
+  src: url("./assets/pfw.ttf");
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -29,11 +29,10 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-
 }
 
 h1 {
-    margin: 10px 0;
+  margin: 10px 0;
   font-size: var(--secondarySize);
   font-weight: 500;
   word-spacing: 8px;

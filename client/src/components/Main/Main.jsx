@@ -6,6 +6,7 @@ import {
   GAME_FINISH,
   GAME_PRESTART,
   GAME_START,
+  TIE,
   WAITING,
   update,
 } from "../../redux/gameSlice";
@@ -13,6 +14,7 @@ import LoadingScreen from "../LoadingScreen/LoadingScreen";
 import "./main.css";
 import ReadyScreen from "../ReadyScreen/ReadyScreen";
 import GameScreen from "../GameScreen/GameScreen";
+import FinishScreen from "../FinishScreen/FinishScreen";
 function Main() {
   const user = useSelector(({ game }) => game);
 
@@ -52,15 +54,16 @@ function Main() {
     client.current.onmessage = onMessage;
     client.current.onclose = onClose;
   }, []);
-
   if (user.state === WAITING && user.name)
     return <LoadingScreen text={"Searching for other players..."} />;
   else if (user.state === GAME_PRESTART && !user.isReady)
     return <ReadyScreen sendMessage={sendMessage} />;
   else if (user.state === GAME_PRESTART && user.isReady)
     return <LoadingScreen text={"Waiting for other players..."} />;
-  else if (user.state === GAME_START)
+  else if (user.state === GAME_START || user.state === TIE)
     return <GameScreen sendMessage={sendMessage} />;
+  else if (user.state === GAME_FINISH)
+    return <FinishScreen sendMessage={sendMessage} />;
 }
 
 export default Main;

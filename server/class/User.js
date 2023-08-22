@@ -35,4 +35,11 @@ export default class User {
   loose() {
     this.data.isWin = false;
   }
+  reset() {
+    this.data = {
+      ...this.data,
+      isWin: null,
+      isReady: false,
+    };
+  }
 }

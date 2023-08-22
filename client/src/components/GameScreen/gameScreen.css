@@ -6,11 +6,40 @@
   transform: translate(-50%, -50%);
 }
 
-.timer {
-  font-size: 48px;
-  color: #b190e2;
+.start-timer {
+  position: absolute;
+  left: calc(50% - 9vh);
+  top: calc(50% - 9vh);
+
+  font-size: 30vh;
+  color: #FFB403;
   text-align: center;
-  margin-bottom: 20px;
+  -webkit-text-stroke: 5px #FFFD02;
+  z-index: 10;
+
+  animation: timerTick infinite 1.02s;
+}
+
+@keyframes timerTick {
+  0%{
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  
+}
+
+.finish-timer {
+  position: relative;
+
+  font-size: var(--primarySize);
+  color: white;
+  text-align: center;
+  z-index: 10;
+
+  animation: none;
 }
 
 .game-screen-content {

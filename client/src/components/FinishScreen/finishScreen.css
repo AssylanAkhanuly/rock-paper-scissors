@@ -1,0 +1,74 @@
+.finish-screen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  background: rgba(0, 0, 0, 50%);
+  z-index: 20;
+}
+.finish-screen-title {
+  position: absolute;
+  left: 10%;
+  top: 10%;
+
+  font-size: 5vh;
+  color: white;
+  text-align: center;
+  z-index: 10;
+
+  animation: slide-left 2s ease-out;
+}
+
+.finish-screen-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  animation: slide-center 5s ease-out;
+}
+
+.win-name {
+  font-size: 10vh;
+  color: #ffb403;
+  text-align: center;
+  -webkit-text-stroke: 5px #fffd02;
+}
+
+.replay-button {
+    padding: 20px;
+    position: absolute;
+    bottom: 80px;
+
+    left: 20%;
+    right: 20%;
+    width: auto;
+    
+    border-radius: 10px;
+    background-color: transparent;
+    border: 1px solid grey;
+    color: white;
+}
+
+@keyframes slide-left {
+  0% {
+    left: 150%;
+  }
+
+  100% {
+    left: 10%;
+  }
+}
+
+@keyframes slide-center {
+  0% {
+    left: 250%;
+  }
+
+  100% {
+    left: 50%;
+  }
+}

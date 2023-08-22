@@ -6,42 +6,41 @@ import RockAngryImg from "../../assets/rock-angry.jpg";
 import { useState } from "react";
 import { USER_SELECTED, customUpdate } from "../../redux/gameSlice";
 import { useDispatch } from "react-redux";
+import {
+  buttonClickEffect,
+  buttonHoverEffect,
+  timer,
+  timerEffect,
+  useCountDown,
+} from "../../common";
 
 const ROCK = 1;
 const PAPER = 2;
 const SCISSORS = 3;
 function GameScreen({ sendMessage }) {
-  const dispatch = useDispatch();
   const [selection, setSelection] = useState("");
   const [state, setState] = useState("start");
-  const [startTimer, setStartTimer] = useState(5);
-  const [finishTimer, setFinishTimer] = useState(5);
   const screenRef = useRef();
-  let interval;
+
+  const { secondsLeft, start } = useCountDown(5);
 
   useEffect(() => {
-    if (startTimer > 0 && state === "start")
-      interval = setTimeout(() => setStartTimer(startTimer - 1), 1000);
-    else if (startTimer <= 0 && state === "start") {
-      clearInterval(interval);
-      screenRef.current.classList.add("active");
-      setState("finish");
-    } else if (finishTimer > 0 && state === "finish") {
-      interval = setTimeout(() => setFinishTimer(finishTimer - 1), 1000);
-    } else if (finishTimer <= 0 && state === "finish") {
-      clearInterval(interval);
-      setState("end");
-    } else if (state === "end") {
-      sendMessage({
-        type: USER_SELECTED,
-        selection,
-      });
+    if (secondsLeft < 0) {
+      if (state === "start") {
+        screenRef.current.classList.add("active");
+        setState("finish");
+        start(5);
+      } else if (state === "finish") {
+        sendMessage({
+          type: USER_SELECTED,
+          selection,
+        });
+      }
     }
-
-    return () => clearInterval(interval);
-  }, [startTimer, finishTimer, state]);
+  }, [secondsLeft]);
 
   const select = (option) => {
+    buttonClickEffect();
     if (selection) {
       const element = document.getElementById(selection);
       element.classList.remove("active");
@@ -52,15 +51,20 @@ function GameScreen({ sendMessage }) {
   };
   return (
     <div className="game-screen">
-      <h1 className="timer">
-        {startTimer
-          ? `Game Starts In: ${startTimer}`
-          : `Game Ends In: ${finishTimer}`}
-      </h1>
+      {secondsLeft >= 0 && (
+        <h1 className={state ==="start" ? "start-timer" : "finish-timer"}>
+          {secondsLeft}
+        </h1>
+      )}
       <div ref={screenRef} className="game-screen-content">
         <h1 className="game-screen-title">Select an option</h1>
         <div className="options">
-          <div id={ROCK} className="option" onClick={() => select(ROCK)}>
+          <div
+            onPointerEnter={() => buttonHoverEffect()}
+            id={ROCK}
+            className="option"
+            onClick={() => select(ROCK)}
+          >
             <img
               width={150}
               height={150}
@@ -72,6 +76,7 @@ function GameScreen({ sendMessage }) {
             <h2 className="option-desc">Rock</h2>
           </div>
           <div
+            onPointerEnter={() => buttonHoverEffect()}
             id={SCISSORS}
             className="option"
             onClick={() => select(SCISSORS)}
@@ -88,7 +93,12 @@ function GameScreen({ sendMessage }) {
 
             <h2 className="option-desc">Scissors</h2>
           </div>
-          <div id={PAPER} className="option" onClick={() => select(PAPER)}>
+          <div
+            onPointerEnter={() => buttonHoverEffect()}
+            id={PAPER}
+            className="option"
+            onClick={() => select(PAPER)}
+          >
             <img
               width={150}
               height={150}

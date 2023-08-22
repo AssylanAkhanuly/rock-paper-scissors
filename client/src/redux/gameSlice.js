@@ -6,7 +6,7 @@ export const WAITING = "NO INGAME";
 export const GAME_PRESTART = "GAME INSTART";
 export const GAME_START = "GAME STARTED";
 export const GAME_FINISH = "GAME OVER";
-
+export const TIE = "TIE"
 
 const INITIAL_STATE = {
   connectionID: v4(),
@@ -24,6 +24,7 @@ export const SET_NAME = "SET_NAME";
 export const CONNECTION = "CONNECTION";
 export const USER_READY = "USER_READY";
 export const USER_SELECTED = "USER_SELECTED";
+export const RESTART = "RESTART"
 export const gameSlice = createSlice({
   name: "game",
   initialState: INITIAL_STATE,

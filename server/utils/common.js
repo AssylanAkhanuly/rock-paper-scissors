@@ -34,6 +34,7 @@ export const whoWin = (users) => {
 
   const selections = [...new Set(users.map((user) => user.data.selection))];
   
+  console.log(selections)
   if (selections.length % 2) return { winners, loosers, isTie: true };
 
   const sum = users.reduce((acc, user) => {

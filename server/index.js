@@ -1,6 +1,6 @@
 import http from "http";
 import { server as WebSocketServer } from "websocket";
-import { Room, USER_READY, USER_SELECTED } from "./class/Room.js";
+import { RESTART, Room, USER_READY, USER_SELECTED } from "./class/Room.js";
 import { tryParseMessage } from "./utils/common.js";
 
 var server = http.createServer(function (request, response) {
@@ -33,11 +33,15 @@ const onMessage = (message) => {
         case USER_READY:
           messageAction = "ready";
           if (room.isAllUsersReady()) room.startGame();
-          break
+          break;
         case USER_SELECTED:
           messageAction = "selected";
           if (room.isAllUsersSelected()) room.finishGame();
-          break
+          break;
+        case RESTART:
+          messageAction = "restarted";
+          room.resetUsers();
+          room.prestartGame();
       }
       room.sendAll({
         type: parsedMessage.type,
