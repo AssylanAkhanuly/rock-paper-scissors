@@ -47,6 +47,14 @@ export class Room {
     return newUser;
   }
 
+  resetGame() {
+    this.state = WAITING;
+    this.sendAll({
+      type: WAITING,
+      message: { name: "GAME:", action: "searching for other players" },
+    });
+  }
+
   prestartGame() {
     this.state = GAME_PRESTART;
     this.sendAll({
@@ -68,6 +76,8 @@ export class Room {
       },
       users: this.getAllUsers(),
     });
+
+    if (this.getAllUsers().length < this.maxUser) this.resetGame();
   }
 
   startGame() {
@@ -80,7 +90,7 @@ export class Room {
   finishGame() {
     this.state = GAME_FINISH;
     const { winners, loosers, isTie } = whoWin(this.connections);
-    console.log("tie", isTie);
+
     if (isTie) {
       this.state = TIE;
       this.sendAll({
@@ -88,8 +98,8 @@ export class Room {
         message: { name: "Game:", action: "Tie" },
       });
     } else {
-      winners.map((user) => user.win());
-      loosers.map((user) => user.loose());
+      winners.map((winner) => winner.win());
+      loosers.map((looser) => looser.loose());
 
       this.sendUsers(winners, {
         type: USER_WIN,

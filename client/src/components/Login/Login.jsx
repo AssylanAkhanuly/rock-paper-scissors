@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { buttonClickEffect, startBackgroundMusic } from "../../common";
 import { SET_NAME, customUpdate, update } from "../../redux/gameSlice";
 import "./login.css";
-function Login({ user, setUser }) {
-  const [name, setName] = useState("");
+function Login() {
+  const user = useSelector(({ game }) => game);
+  const [name, setName] = useState(user.name);
   const dispatch = useDispatch();
 
   const handleEnter = () => {
@@ -13,7 +14,7 @@ function Login({ user, setUser }) {
 
     let newName = name;
     if (!newName) newName = "User" + Math.floor(Math.random() * 100);
-    dispatch(customUpdate({ name: newName }));
+    dispatch(customUpdate({ name: newName, isConnected: true }));
   };
 
   return (

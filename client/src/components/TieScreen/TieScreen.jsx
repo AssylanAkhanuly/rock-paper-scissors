@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import "./tieScreen.css";
 import { RESTART, TIE } from "../../redux/gameSlice";
+import { useConnection } from "../../common";
 
-function TieScreen({ sendMessage }) {
+function TieScreen() {
+    const {sendMessage} = useConnection();
   useEffect(() => {
     const interval = setInterval(() => {
       sendMessage({

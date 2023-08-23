@@ -1,27 +1,24 @@
-import React, { useEffect, useRef } from "react";
-import "./gameScreen.css";
-import ScissorsAngryImg from "../../assets/scissors-angry.png";
+import React, { useEffect, useRef, useState } from "react";
 import PaperAngryImg from "../../assets/paper-angry.jpg";
 import RockAngryImg from "../../assets/rock-angry.jpg";
-import { useState } from "react";
-import { USER_SELECTED, customUpdate } from "../../redux/gameSlice";
-import { useDispatch } from "react-redux";
+import ScissorsAngryImg from "../../assets/scissors-angry.png";
 import {
   buttonClickEffect,
   buttonHoverEffect,
-  timer,
-  timerEffect,
-  useCountDown,
+  useConnection,
+  useCountDown
 } from "../../common";
+import { USER_SELECTED } from "../../redux/gameSlice";
+import "./gameScreen.css";
 
 const ROCK = 1;
 const PAPER = 2;
 const SCISSORS = 3;
-function GameScreen({ sendMessage }) {
+function GameScreen() {
   const [selection, setSelection] = useState("");
   const [state, setState] = useState("start");
   const screenRef = useRef();
-
+const {sendMessage} =useConnection();
   const { secondsLeft, start } = useCountDown(5);
 
   useEffect(() => {

@@ -1,12 +1,12 @@
 import React from "react";
 import "./finishScreen.css";
 import { useSelector } from "react-redux";
-import { buttonClickEffect, buttonHoverEffect } from "../../common";
+import { buttonClickEffect, buttonHoverEffect, useConnection } from "../../common";
 import { RESTART } from "../../redux/gameSlice";
 
-function FinishScreen({ sendMessage }) {
+function FinishScreen() {
   const user = useSelector(({ game }) => game);
-
+  const {sendMessage} = useConnection();
   const restart = () => {
     buttonClickEffect();
 
@@ -20,8 +20,10 @@ function FinishScreen({ sendMessage }) {
       <div className="finish-screen-center">
         {user.users
           .filter((user) => user.isWin)
-          .map((user) => (
-            <h1 className="win-name">{user.name}</h1>
+          .map((user, index) => (
+            <h1 key={index} className="win-name">
+              {user.name}
+            </h1>
           ))}
       </div>
       <button

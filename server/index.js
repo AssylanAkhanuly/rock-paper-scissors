@@ -2,6 +2,25 @@ import http from "http";
 import { server as WebSocketServer } from "websocket";
 import { RESTART, Room, TIE, USER_READY, USER_SELECTED } from "./class/Room.js";
 import { tryParseMessage } from "./utils/common.js";
+import express from "express";
+
+
+//REST API
+//Since it is test application. I am using simple array to store user score and history
+//In reality, it is recommneded to user DB
+const userData = []
+const app = express();
+
+app.listen(3000, () =>
+  console.log(`Express is running on port 3000`)
+);
+
+app.get("/api/user/:connectionID", (req, res, next) => {
+  const connectionID = req.params.connectionID
+  const user = userData.find(user => user.connectionID === connectionID)
+
+  res.status(200).json(user)
+})
 
 var server = http.createServer(function (request, response) {
   console.log(new Date() + " Received request for " + request.url);
@@ -64,8 +83,6 @@ const onRequest = (request) => {
   user.connection.on("close", () =>
     room.disconnectUser(user.data.connectionID)
   );
-
-  // const onClose = (e) => {};
 };
 
 socket.on("request", onRequest);

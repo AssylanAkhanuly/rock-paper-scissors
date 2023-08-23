@@ -15,3 +15,35 @@
     font-weight: bold;
     font-size: 2.25em;
 }
+
+#leaveroom {
+    width: auto;
+    transform: translateX(-2em);
+    background-color: #0006;
+    border-top: 3px solid #1116;
+    border-right: 3px solid #2226;
+    border-bottom: 3px solid #0006;
+    box-shadow: 0 0 8px #0004;
+    color: #fffA;
+    font-family: HUN;
+    font-size: 1.8em;
+    border-radius: 3px;
+    filter: brightness(1);
+    transition: .5s transform,.5s filter,.5s opacity,.5s background-color,.5s border-top,.5s border-right,.5s border-bottom,.5s color;
+    padding-top: 0.5em;
+    padding-bottom: 0.3em;
+    padding-left: 3.5em;
+    padding-right: 0.5em;
+    cursor: pointer;
+}
+
+#leaveroom:hover {
+    transform: translateX(-0.5em);
+    filter: brightness(1.2);
+    background-color: #4006;
+    border-top: 3px solid #4116;
+    border-right: 3px solid #4226;
+    border-bottom: 3px solid #4006;
+    color: #faa;
+    transition: .2s transform,.2s filter,.5s opacity,.2s background-color,.2s border-top,.2s border-right,.2s border-bottom,.2s color;
+}

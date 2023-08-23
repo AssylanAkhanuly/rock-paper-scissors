@@ -9,12 +9,13 @@ import Footer from "./components/Footer/Footer";
 import PlayersList from "./components/PlayersList/PlayersList";
 function App() {
   const gameState = useSelector(({ game }) => game);
+  console.log(gameState.isConnected)
   return (
     <div className="App">
       <Header/>
       <Background>
         <Chat />
-        {gameState.name ? <Main /> : <Login />}
+        {gameState.isConnected ? <Main /> : <Login />}
         <PlayersList/>
       </Background>
       <Footer/>

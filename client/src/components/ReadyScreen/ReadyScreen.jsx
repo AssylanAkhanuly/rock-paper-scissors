@@ -1,7 +1,9 @@
 import React from "react";
 import "./readyScreen.css";
 import { USER_READY } from "../../redux/gameSlice";
-function ReadyScreen({ sendMessage }) {
+import { useConnection } from "../../common";
+function ReadyScreen() {
+  const {sendMessage} = useConnection();
   return (
     <div className="ready">
       <div className="ready-content">
