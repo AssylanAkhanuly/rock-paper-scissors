@@ -40,6 +40,7 @@ export default class User {
       ...this.data,
       isWin: null,
       isReady: false,
+      selection: null,
     };
   }
 }

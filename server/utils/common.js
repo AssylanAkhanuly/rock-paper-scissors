@@ -33,23 +33,25 @@ export const whoWin = (users) => {
   let loosers = [];
 
   const selections = [...new Set(users.map((user) => user.data.selection))];
-  
-  console.log(selections)
+
   if (selections.length % 2) return { winners, loosers, isTie: true };
 
-  const sum = users.reduce((acc, user) => {
-    return acc + user.selection;
+  const sum = selections.reduce((acc, selection) => {
+    return acc + selection;
   }, 0);
 
   const max = Math.max(...selections);
   const min = Math.min(...selections);
-
+  console.log("sum of selections: ", sum);
+  console.log("selections: ", selections);
+  console.log("max: ", max )
+  console.log("min: ", min )
   if (sum % 2 === 1) {
-    winners = users.filter((user) => user.data.selection === min);
-    loosers = users.filter((user) => user.data.selection === max);
-  } else {
     winners = users.filter((user) => user.data.selection === max);
     loosers = users.filter((user) => user.data.selection === min);
+  } else {
+    winners = users.filter((user) => user.data.selection === min);
+    loosers = users.filter((user) => user.data.selection === max);
   }
 
   return {

@@ -15,6 +15,7 @@ import "./main.css";
 import ReadyScreen from "../ReadyScreen/ReadyScreen";
 import GameScreen from "../GameScreen/GameScreen";
 import FinishScreen from "../FinishScreen/FinishScreen";
+import TieScreen from "../TieScreen/TieScreen";
 function Main() {
   const user = useSelector(({ game }) => game);
 
@@ -60,8 +61,9 @@ function Main() {
     return <ReadyScreen sendMessage={sendMessage} />;
   else if (user.state === GAME_PRESTART && user.isReady)
     return <LoadingScreen text={"Waiting for other players..."} />;
-  else if (user.state === GAME_START || user.state === TIE)
+  else if (user.state === GAME_START)
     return <GameScreen sendMessage={sendMessage} />;
+  else if (user.state === TIE) return <TieScreen sendMessage={sendMessage} />;
   else if (user.state === GAME_FINISH)
     return <FinishScreen sendMessage={sendMessage} />;
 }
