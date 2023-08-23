@@ -33,10 +33,9 @@ const INITIAL_STATE = {
   score: parseInt(sessionStorage.getItem("score")) || 0,
   users: [],
   messages: [],
+  history: JSON.parse(sessionStorage.getItem("history")) || [],
   state: WAITING,
 };
-
-
 
 //ACTIONS
 export const DISCONNECTION = "DISCONNECTION";
@@ -45,6 +44,9 @@ export const CONNECTION = "CONNECTION";
 export const USER_READY = "USER_READY";
 export const USER_SELECTED = "USER_SELECTED";
 export const RESTART = "RESTART";
+export const USER_WIN = "WIN!";
+export const USER_LOST = "YOU LOSE";
+
 export const gameSlice = createSlice({
   name: "game",
   initialState: INITIAL_STATE,
@@ -54,16 +56,21 @@ export const gameSlice = createSlice({
         ...INITIAL_STATE,
         name: sessionStorage.getItem("name") || "",
         score: parseInt(sessionStorage.getItem("score")) || 0,
+        history: JSON.parse(sessionStorage.getItem("history")) || [],
       }),
-    customUpdate: (state, action) => (state = { ...state, ...action.payload }),
+    customUpdate: (state, action) => {
+      console.log(action.payload);
+      return (state = { ...state, ...action.payload });
+    },
     update: (state, action) => {
       const user = action.payload.user;
+
       if (user?.connectionID === state.connectionID) {
         state = {
           ...state,
-          ...action.payload.user,
+          ...user,
         };
-        saveUser(action.payload.user);
+        saveUser(state);
       }
       return (state = {
         ...state,

@@ -73,7 +73,7 @@ export function useConnection() {
   const dispatch = useDispatch();
 
   const sendMessage = (message) => {
-    const { messages, users, ...other } = user;
+    const { messages, users, history, ...other } = user;
     const stringMessage = JSON.stringify({
       ...message,
       user: { ...other, ...message?.user },
@@ -117,9 +117,10 @@ export function useConnection() {
 }
 
 export const saveUser = (user) => {
-  const { connectionID, name, score } = user;
+  const { connectionID, name, score, history } = user;
 
   sessionStorage.setItem("connectionID", connectionID);
   sessionStorage.setItem("name", name);
   sessionStorage.setItem("score", score);
+  sessionStorage.setItem("history", JSON.stringify(history))
 };

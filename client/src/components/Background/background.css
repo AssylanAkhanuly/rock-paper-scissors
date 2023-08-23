@@ -9,30 +9,29 @@
 }
 
 .hex-grid {
-    height:     calc(100vh - 70px - 40px);
-    background: #000;
+  height: calc(100vh - 70px - 40px);
+  background: #000;
 }
 
 .hex-grid .grid {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: url("../../assets/grid.svg") repeat;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    background-size: 500px;
-
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url("../../assets/grid.svg") repeat;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-size: 500px;
 }
 
 .hex-grid .light {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 15em;
-    height: 15em;
-    filter: blur(15px);
-    background: linear-gradient(90deg, #335bf4, #2ae929 100%);
-    z-index: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15em;
+  height: 15em;
+  filter: blur(15px);
+  background: linear-gradient(90deg, #335bf4, #2ae929 100%);
+  z-index: 0;
 }

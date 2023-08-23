@@ -1,15 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./finishScreen.css";
-import { useSelector } from "react-redux";
-import { buttonClickEffect, buttonHoverEffect, useConnection } from "../../common";
-import { RESTART } from "../../redux/gameSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  buttonClickEffect,
+  buttonHoverEffect,
+  useConnection,
+} from "../../common";
+import {
+  GAME_FINISH,
+  RESTART,
+  USER_LOST,
+  USER_WIN,
+  customUpdate,
+} from "../../redux/gameSlice";
 
 function FinishScreen() {
   const user = useSelector(({ game }) => game);
-  const {sendMessage} = useConnection();
+  const { sendMessage } = useConnection();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("user:", user)
+    if (user.state === GAME_FINISH) {
+      dispatch(
+        customUpdate({
+          history: [
+            ...user.history,
+            {
+              opponents: user.users.filter(
+                (opponent) => opponent.connectionID !== user.connectionID
+              ),
+              isWin: user.isWin,
+            },
+          ],
+        })
+      );
+    }
+  }, []);
+
   const restart = () => {
     buttonClickEffect();
-
     sendMessage({
       type: RESTART,
     });

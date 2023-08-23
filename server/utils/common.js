@@ -42,10 +42,6 @@ export const whoWin = (users) => {
 
   const max = Math.max(...selections);
   const min = Math.min(...selections);
-  console.log("sum of selections: ", sum);
-  console.log("selections: ", selections);
-  console.log("max: ", max )
-  console.log("min: ", min )
   if (sum % 2 === 1) {
     winners = users.filter((user) => user.data.selection === max);
     loosers = users.filter((user) => user.data.selection === min);

@@ -9,7 +9,7 @@ function Login() {
   const dispatch = useDispatch();
 
   const handleEnter = () => {
-    // startBackgroundMusic();
+    startBackgroundMusic();
     buttonClickEffect();
 
     let newName = name;

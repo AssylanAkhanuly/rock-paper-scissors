@@ -9,7 +9,6 @@ export default class User {
 
     this.connection = connection;
     this.data = { ...data, isReady: false, score: parseInt(score) };
-    console.log(this.data)
   }
   sendMessage(message) {
     let stringMessage = message;
@@ -18,9 +17,10 @@ export default class User {
     this.connection.sendUTF(stringMessage);
   }
   updateData(newData) {
+    const { user, ...other } = newData;
     this.data = {
       ...this.data,
-      ...newData,
+      ...other,
     };
   }
 
