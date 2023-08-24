@@ -15,7 +15,7 @@ const ROCK = 1;
 const PAPER = 2;
 const SCISSORS = 3;
 function GameScreen() {
-  const [selection, setSelection] = useState("");
+  const [selection, setSelection] = useState(0);
   const [state, setState] = useState("start");
   const screenRef = useRef();
 const {sendMessage} =useConnection();

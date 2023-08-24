@@ -16,6 +16,7 @@ function Header() {
   };
 
   const toggleModal = () => {
+    buttonClickEffect();
     modalRef.current.classList.toggle("active");
   };
   return (
@@ -45,18 +46,19 @@ function Header() {
           </div>
           <h1 className="statistics-main">
             {user.history.length
-              ? Math.round(user.score / user.history.length * 100)
+              ? Math.round((user.score / user.history.length) * 100)
               : 0}
             %
           </h1>
         </div>
       )}
-      <div ref={modalRef} class="dialogs">
-        <div class="oob_modal tetra_modal">
+      <div ref={modalRef} className="dialogs">
+        <div className="oob_modal tetra_modal">
           <h2>History</h2>
           <div
             onClick={() => toggleModal()}
-            class="tetra_modal_close ns"
+            onPointerEnter={() => buttonHoverEffect()}
+            className="tetra_modal_close ns"
             data-hover="tap"
             data-hit="click"
           >
@@ -66,7 +68,7 @@ function Header() {
             {user.history.map((game, index) => (
               <div
                 key={index}
-                class={game.isWin ? "tetra_modal_warning" : "tetra_modal_loss"}
+                className={game.isWin ? "tetra_modal_warning" : "tetra_modal_loss"}
               >
                 <h1>
                   {game.opponents.map((opponent) => opponent.name).join(", ")}
@@ -74,6 +76,9 @@ function Header() {
                 <h1>{game.isWin ? "Win" : "Lost"}</h1>
               </div>
             ))}
+            {!user.history.length && (
+              <div className={"tetra_modal_warning"}>History is empty</div>
+            )}
           </div>
         </div>
       </div>

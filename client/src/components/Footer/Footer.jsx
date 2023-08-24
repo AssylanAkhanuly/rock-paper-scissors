@@ -6,13 +6,17 @@ function Footer() {
   return (
     <div className="footer">
       <div id="room_switchbracket">
-      {user.name}
+        {user.name}
         <div id="swb_addendum">exit to change your name</div>
       </div>
       <div id="room_ingame_warning">
         {user.state}
         <br />
-        asda
+        <div id="igw_addendum">
+          <div id="igw_spectate" data-hover="hover" data-hit="confirm">
+            ROOM NUmber: {user.roomIndex}
+          </div>
+        </div>
       </div>
 
       <h1 className="footer-text">Welcome to platform</h1>

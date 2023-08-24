@@ -21,29 +21,24 @@ export class Room {
   state = WAITING;
   maxUser = 2;
   connections = [];
-
-  constructor(maxUser) {
-    this.maxUser = maxUser;
+  roomIndex;
+  constructor(roomIndex) {
+    this.roomIndex = roomIndex;
   }
 
-  connectUser(request) {
-    if (!isOriginAllowed(request.origin)) {
-      request.reject();
-      return;
-    }
-
-    const connection = request.accept("echo-protocol", request.origin);
+  connectUser(request, connection) {
     const data = copyObj(request.resourceURL.query);
     const newUser = this.pushUser({ connection, data });
 
-    this.sendAll({
-      type: CONNECTION,
-      message: { name: data.name, action: "joined" },
-      user: newUser.data,
-    });
+    if (newUser) {
+      this.sendAll({
+        type: CONNECTION,
+        message: { name: data.name, action: "joined" },
+        user: newUser.data,
+      });
 
-    if (this.getAllUsers().length >= this.maxUser) this.prestartGame();
-
+      if (this.getAllUsers().length >= this.maxUser) this.prestartGame();
+    }
     return newUser;
   }
 
@@ -64,8 +59,7 @@ export class Room {
   }
 
   disconnectUser(connectionID) {
-    const index = this.getIndex(connectionID);
-    const user = this.connections[index];
+    const user = this.getUser(connectionID);
 
     this.popUser(connectionID);
     this.sendAll({
@@ -113,10 +107,13 @@ export class Room {
   }
 
   pushUser(userData) {
+    if (this.connections.length >= this.maxUser) return null;
     const newUser = new User({
       ...userData,
-      inInWaitingList:
-        this.state === GAME_PRESTART || this.state === GAME_START,
+      data: {
+        ...userData.data,
+        roomIndex: this.roomIndex,
+      },
     });
     this.connections.push(newUser);
 
@@ -124,14 +121,18 @@ export class Room {
   }
 
   popUser(connectionID) {
-    const index = this.getIndex(connectionID);
-    if (index > -1) this.connections.splice(index, 1);
-  }
-
-  getIndex(connectionID) {
-    return this.connections.findIndex(
+    const userIndex = this.connections.findIndex(
       (connection) => connection.data.connectionID === connectionID
     );
+    if (userIndex > -1) this.connections.splice(userIndex, 1);
+  }
+
+  getUser(connectionID) {
+    const userIndex = this.connections.findIndex(
+      (connection) => connection.data.connectionID === connectionID
+    );
+    if (userIndex > -1) return this.connections[userIndex];
+    return null;
   }
 
   sendUsers(users, message) {

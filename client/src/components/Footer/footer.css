@@ -98,3 +98,19 @@
   clip-path: polygon(0 100%, 5% 0, 95% 0, 100% 100%);
   z-index: -1;
 }
+
+#igw_addendum div {
+  display: inline-block;
+  width: 8em;
+  background: linear-gradient(to bottom,#b190e2 0,#634c85 100%);
+  color: #000B;
+  font-weight: 900;
+  filter: brightness(1);
+  padding: 0.4em 0.5em;
+  padding-bottom: 1.1em;
+  transform: translateY(0);
+  transition: .5s transform,.5s filter,.5s opacity;
+  font-size: .7em;
+  margin: 0 0.5em;
+  margin-bottom: -1.05em;
+}

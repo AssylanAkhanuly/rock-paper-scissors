@@ -1,7 +1,11 @@
 import http from "http";
 import { server as WebSocketServer } from "websocket";
 import { RESTART, Room, TIE, USER_READY, USER_SELECTED } from "./class/Room.js";
-import { tryParseMessage } from "./utils/common.js";
+import {
+  checkProtocol,
+  isOriginAllowed,
+  tryParseMessage,
+} from "./utils/common.js";
 
 var server = http.createServer(function (request, response) {
   console.log(new Date() + " Received request for " + request.url);
@@ -17,14 +21,14 @@ const socket = new WebSocketServer({
   autoAcceptConnections: false,
 });
 
-const room = new Room(2);
+const rooms = [];
 
 const onMessage = (message) => {
   let parsedMessage = tryParseMessage(message);
-  const index = room.getIndex(parsedMessage.user.connectionID);
-  if (index > -1) {
+  const room = rooms[parsedMessage.user.roomIndex];
+  const user = room.getUser(parsedMessage.user.connectionID);
+  if (user) {
     {
-      const user = room.connections[index];
       user.updateData(parsedMessage);
 
       switch (parsedMessage.type) {
@@ -63,12 +67,30 @@ const onMessage = (message) => {
 };
 
 const onRequest = (request) => {
-  const user = room.connectUser(request);
+  let user, roomIndex;
+
+  const connection = checkProtocol(request);
+  for (let index = 0; index < rooms.length; index++) {
+    const room = rooms[index];
+    user = room.connectUser(request, connection);
+    if (user) {
+      roomIndex = index;
+      break;
+    }
+  }
+
+  if (!user) {
+    const newRoom = new Room(rooms.length);
+    roomIndex = rooms.length;
+    user = newRoom.connectUser(request, connection);
+    rooms.push(newRoom);
+  }
 
   user.connection.on("message", onMessage);
-  user.connection.on("close", () =>
-    room.disconnectUser(user.data.connectionID)
-  );
+  user.connection.on("close", () => {
+    rooms[roomIndex].disconnectUser(user.data.connectionID);
+    if (!rooms[roomIndex].connections.length) rooms.splice(roomIndex, 1);
+  });
 };
 
 socket.on("request", onRequest);
