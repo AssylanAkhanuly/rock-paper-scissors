@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 import {
   buttonClickEffect,
   buttonHoverEffect,
@@ -6,6 +8,8 @@ import {
 } from "../../common";
 import "./header.css";
 import { useSelector } from "react-redux";
+import History from "../History/History";
+import BlackList from "../BlackList/BlackList";
 function Header() {
   const user = useSelector(({ game }) => game);
   const modalRef = useRef();
@@ -25,7 +29,7 @@ function Header() {
         <button
           onClick={() => logout()}
           onPointerEnter={() => buttonHoverEffect()}
-          id="leaveroom"
+          className="leave-room"
         >
           EXIT
         </button>
@@ -38,9 +42,9 @@ function Header() {
           onClick={() => toggleModal()}
           className="statistics-container"
         >
-          <div id="me">
-            <div id="me_username">wins / rounds</div>
-            <div id="me_anon">
+          <div id="statistics">
+            <div>wins / rounds</div>
+            <div className="score">
               {user.score} / {user.history.length}
             </div>
           </div>
@@ -52,34 +56,37 @@ function Header() {
           </h1>
         </div>
       )}
-      <div ref={modalRef} className="dialogs">
-        <div className="oob_modal tetra_modal">
-          <h2>History</h2>
+      <div ref={modalRef} className="modal-outside">
+        <div className="modal">
+          <h2>{user.name}</h2>
           <div
             onClick={() => toggleModal()}
             onPointerEnter={() => buttonHoverEffect()}
-            className="tetra_modal_close ns"
-            data-hover="tap"
-            data-hit="click"
+            className="close-modal"
           >
             CLOSE
           </div>
-          <div className="history-list">
-            {user.history.map((game, index) => (
-              <div
-                key={index}
-                className={game.isWin ? "tetra_modal_warning" : "tetra_modal_loss"}
+          <Tabs>
+            <TabList className="tabs-list">
+              <Tab
+                className="tab-header"
+                selectedClassName="tab-header-selected"
               >
-                <h1>
-                  {game.opponents.map((opponent) => opponent.name).join(", ")}
-                </h1>
-                <h1>{game.isWin ? "Win" : "Lost"}</h1>
-              </div>
-            ))}
-            {!user.history.length && (
-              <div className={"tetra_modal_warning"}>History is empty</div>
-            )}
-          </div>
+                History
+              </Tab>
+              <Tab
+                className="tab-header"
+                selectedClassName="tab-header-selected"
+              >
+                Black List
+              </Tab>
+            </TabList>
+          
+            <TabPanel>  <History /></TabPanel>
+            <TabPanel>
+              <BlackList/>
+            </TabPanel>
+          </Tabs>
         </div>
       </div>
     </div>

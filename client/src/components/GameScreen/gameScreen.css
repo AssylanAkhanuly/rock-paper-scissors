@@ -12,30 +12,29 @@
   top: calc(50% - 9vh);
 
   font-size: 30vh;
-  color: #FFB403;
+  color: #ffb403;
   text-align: center;
-  -webkit-text-stroke: 5px #FFFD02;
+  -webkit-text-stroke: 5px #fffd02;
   z-index: 10;
 
   animation: timerTick infinite 1.02s;
 }
 
 @keyframes timerTick {
-  0%{
+  0% {
     opacity: 1;
   }
   100% {
     opacity: 0;
     transform: scale(1.5);
   }
-  
 }
 
 .finish-timer {
   position: relative;
 
   font-size: var(--primarySize);
-  color: white;
+  color: var(--ternaryColor);
   text-align: center;
   z-index: 10;
 
@@ -48,18 +47,18 @@
   backdrop-filter: blur(4px);
   background: rgba(0, 0, 0, 40%);
   border-radius: 10px;
-  border: 1px solid var(--acidColor);
+  border: 1px solid var(--primaryShadowColor);
   opacity: 30%;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .game-screen-content.active {
   opacity: 1;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .game-screen-title {
-  color: #b190e2;
+  color: var(--ternaryColor);
   text-align: center;
 }
 
@@ -67,6 +66,12 @@
   display: flex;
   justify-content: center;
   gap: 10px;
+
+  background: linear-gradient(
+    to bottom,
+    var(--primaryBorderLightColor) 0,
+    var(--primaryBorderDarkColor) 100%
+  );
 }
 
 .option {
@@ -75,16 +80,23 @@
 }
 
 .option:active {
-    background-color: grey;
-
+  background-color: grey;
 }
 
 .option.active {
-    background-color: white;
+  background: linear-gradient(
+    to bottom,
+    var(--ternaryColor) 0,
+    var(--ternaryBackgroundLightColor) 100%
+  );
 }
 
 .option.active:hover {
-    background-color: white;
+  background: linear-gradient(
+    to bottom,
+    var(--ternaryColor) 0,
+    var(--ternaryBackgroundLightColor) 100%
+  );
 }
 
 .option:hover {

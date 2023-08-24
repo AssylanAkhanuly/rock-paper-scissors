@@ -46,11 +46,12 @@ const {sendMessage} =useConnection();
     const newElement = document.getElementById(option);
     newElement.classList.add("active");
   };
+  
   return (
     <div className="game-screen">
       {secondsLeft >= 0 && (
         <h1 className={state ==="start" ? "start-timer" : "finish-timer"}>
-          {secondsLeft}
+          {state ==="start" ? secondsLeft : `Game finished in: ${secondsLeft}`}
         </h1>
       )}
       <div ref={screenRef} className="game-screen-content">

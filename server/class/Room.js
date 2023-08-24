@@ -28,6 +28,8 @@ export class Room {
 
   connectUser(request, connection) {
     const data = copyObj(request.resourceURL.query);
+    if (this.isInBlackList(data)) return false;
+
     const newUser = this.pushUser({ connection, data });
 
     if (newUser) {
@@ -152,7 +154,7 @@ export class Room {
         ...message,
         users: this.getAllUsers(),
         state: this.state,
-        user: user.data,
+        user: user.getData(),
       })
     );
   }
@@ -179,5 +181,28 @@ export class Room {
 
   resetUsers() {
     this.connections.map((user) => user.reset());
+  }
+
+  isInBlackList(newUser) {
+    let inBlackList = false;
+
+    for (let index = 0; index < this.connections.length; index++) {
+      const user = this.connections[index];
+      inBlackList = user.isInBlackList(newUser.connectionID);
+
+      if (inBlackList) return true;
+    }
+
+    if (!newUser.blackList) return false;
+
+    if (Array.isArray(newUser.blackList))
+      inBlackList = this.connections.some((connection) =>
+        newUser.blackList.includes(connection.data.connectionID)
+      );
+    if (inBlackList) return true;
+
+    inBlackList = this.getUser(newUser.blackList);
+    if (inBlackList) return true;
+    return false;
   }
 }

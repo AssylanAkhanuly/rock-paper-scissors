@@ -13,7 +13,7 @@ function Footer() {
         {user.state}
         <br />
         <div id="igw_addendum">
-          <div id="igw_spectate" data-hover="hover" data-hit="confirm">
+          <div id="igw_spectate" >
             ROOM NUmber: {user.roomIndex}
           </div>
         </div>

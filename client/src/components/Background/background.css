@@ -32,6 +32,6 @@
   width: 15em;
   height: 15em;
   filter: blur(15px);
-  background: linear-gradient(90deg, #335bf4, #2ae929 100%);
+  background: linear-gradient(90deg, var(--acidBackgroundColor), var(--acidShadowColor) 100%);
   z-index: 0;
 }

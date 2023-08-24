@@ -35,6 +35,7 @@ const INITIAL_STATE = {
   messages: [],
   history: JSON.parse(sessionStorage.getItem("history")) || [],
   state: WAITING,
+  blackList: JSON.parse(sessionStorage.getItem("blackList")) || [],
 };
 
 //ACTIONS
@@ -57,10 +58,12 @@ export const gameSlice = createSlice({
         name: sessionStorage.getItem("name") || "",
         score: parseInt(sessionStorage.getItem("score")) || 0,
         history: JSON.parse(sessionStorage.getItem("history")) || [],
+        blackList: JSON.parse(sessionStorage.getItem("blackList")) || [],
       }),
     customUpdate: (state, action) => {
-      console.log(action.payload);
-      return (state = { ...state, ...action.payload });
+      state = { ...state, ...action.payload };
+      saveUser(state);
+      return state
     },
     update: (state, action) => {
       const user = action.payload.user;

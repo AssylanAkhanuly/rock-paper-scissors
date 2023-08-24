@@ -15,7 +15,25 @@
 
 :root {
   --baseColor: #000000;
-  --acidColor: #fff;
+  --acidColor: #f44;
+  --acidShadowColor: #f44a;
+  --acidBackgroundColor: #4006;
+  --acidBorderLightColor: #4116;
+  --acidBorderDarkColor: #4226;
+
+
+  --primaryColor: #fffa;
+  --primaryShadowColor: #0006;
+  --primaryBorderLightColor: #1116;
+  --primaryBorderDarkColor: #2226;
+
+  --secondaryColor: #9d97f3;
+  --secondaryBackgroundDarkColor: #181726;
+  --secondaryBackgroundLightColor: #2a284a;
+
+  --ternaryBackgroundLightColor:#2e1c49; 
+  --ternaryBackgroundDarkColor:#221437; 
+  --ternaryColor: #b190e2;
 
   --primarySize: 36px;
   --secondarySize: 28px;
@@ -50,7 +68,7 @@ input {
   margin: 10px 0;
   width: 100%;
 
-  color: var(--acidColor);
+  color: var(--primaryColor);
   text-align: left;
   font-size: var(--secondarySize);
 

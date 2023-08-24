@@ -20,13 +20,11 @@ function Login() {
   return (
     <div className="login">
       <div className="login-content">
-        <h1>Welcome to ROCK-SCISSOR-PAPER</h1>
+        <h1 className="login-title">Welcome to ROCK-SCISSOR-PAPER</h1>
         <p>
           puzzle together in this modern yet familiar online stacker. play
           against
-          <br />
           friends and foes all over the world, or claim a spot on the
-          <br />
           leaderboards - the stacker future is yours!
         </p>
       </div>

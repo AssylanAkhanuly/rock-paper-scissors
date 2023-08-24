@@ -2,7 +2,7 @@
   padding: 10px;
   position: absolute;
   left: 0;
-  top: 20px;
+  top: 50px;
   bottom: 50px;
   width: 20%;
   min-width: 200px;
@@ -43,7 +43,7 @@
 
 .chat-title {
   font-size: var(--primarySize);
-  color: var(--acidColor);
+  color: var(--primaryColor);
   font-weight: bold;
 
   opacity: 0;

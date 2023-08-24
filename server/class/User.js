@@ -24,6 +24,19 @@ export default class User {
     };
   }
 
+  getData() {
+    const { blackList, ...other } = this.data;
+    return other;
+  }
+
+  isInBlackList(connectionID) {
+    if (!this.data.blackList) return false;
+
+    if (Array.isArray(this.data.blackList))
+      return this.data.blackList.includes(connectionID);
+    return this.data.blackList === connectionID;
+  }
+
   sendAll(message) {
     this.connections.map((connection) => connection.sendMessage(message));
   }

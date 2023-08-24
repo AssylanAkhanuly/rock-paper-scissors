@@ -16,7 +16,7 @@
   font-size: 2.25em;
 }
 
-#leaveroom {
+.leave-room {
   width: auto;
   transform: translateX(-2em);
   background-color: #0006;
@@ -38,43 +38,31 @@
   cursor: pointer;
 }
 
-#leaveroom:hover {
+.leave-room:hover {
   transform: translateX(-0.5em);
   filter: brightness(1.2);
-  background-color: #4006;
-  border-top: 3px solid #4116;
-  border-right: 3px solid #4226;
-  border-bottom: 3px solid #4006;
+  background-color: var(--acidBackgroundColor);
+  border-top: 3px solid var(--acidBackgroundLightColor);
+  border-right: 3px solid var(--acidBackgroundDarkColor);
+  border-bottom: 3px solid var(--acidBackgroundColor);
   color: #faa;
-  transition: 0.2s transform, 0.2s filter, 0.5s opacity, 0.2s background-color,
-    0.2s border-top, 0.2s border-right, 0.2s border-bottom, 0.2s color;
+  transition: 0.2s;
 }
 
-#me {
+#statistics {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 5px;
 }
-#menus #me_username {
-  position: absolute;
-  left: 0.2em;
-  top: 1.17em;
-  margin: 0;
-  color: #fff;
-  text-shadow: 0 0 4px #000;
-  font-family: HUN;
-  font-weight: 500;
-  font-size: 1.3em;
-  text-transform: uppercase;
-}
-#me_anon {
+
+.score {
   margin: 0;
   padding-top: 0.2em;
-  color: #f44;
+  color: var(--acidColor);
   background: #4006;
-  text-shadow: 0 0 4px #f44a;
+  text-shadow: 0 0 4px var(--acidShadowColor);
   font-family: HUN;
   font-weight: 500;
   font-size: 1.1em;
@@ -95,11 +83,11 @@
 
   width: auto;
   background-color: rgb(0, 0, 0);
-  border-top: 3px solid #1116;
-  border-right: 3px solid #2226;
+  border-top: 3px solid var(--primaryBorderLightColor);
+  border-right: 3px solid var(--primaryBorderDarkColor);
   border-bottom: 3px solid #0006;
-  box-shadow: 0 0 8px #0004;
-  color: #fffa;
+  box-shadow: 0 0 8px var(--primaryShadowColor);
+  color: var(--primaryColor);
   font-family: HUN;
   font-size: 1.2em;
   border-radius: 3px;
@@ -113,19 +101,19 @@
 .statistics-container:hover {
   padding-top: 20px;
   filter: brightness(1.2);
-  background-color: #4006;
-  border-top: 3px solid #4116;
-  border-right: 3px solid #4226;
-  border-bottom: 3px solid #4006;
+  background-color: var(--acidBackgroundColor);
+  border-top: 3px solid var(--acidBorderLightColor);
+  border-right: 3px solid var(--acidBorderDarkColor);
+  border-bottom: 3px solid var(--acidBackgroundColor);
   color: #faa;
   transition: 0.2s;
 }
 
 .statistics-main {
-  font-size: 35px;
+  font-size: 40px;
 }
 
-.tetra_modal {
+.modal {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -151,7 +139,7 @@
   box-shadow: 0 0 48px #0002;
 }
 
-.dialogs {
+.modal-outside {
   display: none;
   position: fixed;
   left: 0;
@@ -162,41 +150,11 @@
   z-index: 9999999;
 }
 
-.dialogs.active {
+.modal-outside.active {
   display: block;
 }
 
-.tetra_modal_warning {
-    display: flex;
-    justify-content: space-between;
-  background-color: #0004;
-  color: #b3f4b6;
-  text-align: center;
-  padding: 1em;
-  font-size: 1.5em;
-  margin-top: 1em;
-}
-
-.history-list {
-    margin-top: 20px;
-    padding: 0 5px;
-    max-height: 50vh;
-    overflow: auto;
-}
-
-.tetra_modal_loss {
-    display: flex;
-    justify-content: space-between;
-  color: #f44;
-  background: #4006;
-  text-shadow: 0 0 4px #f44a;
-  text-align: center;
-  padding: 1em;
-  font-size: 1.5em;
-  margin-top: 1em;
-}
-
-.tetra_modal_close {
+.close-modal {
   display: inline-block;
   position: absolute;
   top: 0.17em;
@@ -210,7 +168,33 @@
   transition: 0.3s;
 }
 
-.tetra_modal_close:hover {
+.close-modal:hover {
   color: white;
   transition: 0.3s;
+}
+
+.tabs-list {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+
+  cursor: pointer;
+  list-style: none;
+}
+
+.tab-header {
+  padding: 10px 20px;
+
+  font-size: 20px;
+  color: white;
+}
+
+.tab-header-selected {
+  background-color: #243e25;
+  border-top: 3px solid #45794f;
+  border-left: 3px solid #3d6242;
+  border-bottom: 3px solid #162419;
+  border-right: 3px solid #1d3220;
+  box-shadow: 0 0 48px #0002;
 }

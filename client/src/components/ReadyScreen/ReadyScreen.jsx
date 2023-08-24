@@ -7,7 +7,7 @@ function ReadyScreen() {
   return (
     <div className="ready">
       <div className="ready-content">
-        <h1>Ready?</h1>
+        <h1 className="ready-title">Ready?</h1>
         <p>enter a username to join, or leave it blank to get a random one</p>
       </div>
 

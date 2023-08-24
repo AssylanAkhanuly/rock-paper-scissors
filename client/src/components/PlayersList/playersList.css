@@ -22,53 +22,105 @@
 
 .playersList-title {
   font-size: var(--primarySize);
-  color: var(--acidColor);
+  color: var(--primaryColor);
   font-weight: normal;
 }
 
 .player-list-item {
+  padding-top: 0.3em;
+  padding-bottom: 0.1em;
+  padding-left: 2em;
+  padding-right: 0.5em;
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  color: #d9bef3;
   background-color: #372b51;
   border-top: 3px solid #453469;
   border-right: 3px solid #302742;
   border-bottom: 3px solid #211c2c;
   box-shadow: 0 0 8px #000;
-  font-family: HUN;
   border-radius: 3px 0px 0px 3px;
-  padding-top: 0.3em;
-  padding-bottom: 0.1em;
-  padding-left: 2em;
-  padding-right: 0.5em;
+
   margin-bottom: 0.5em;
-  position: relative;
   cursor: pointer;
-  animation: 0.5s FlyInLeft cubic-bezier(0, 0.55, 0.4, 1);
 }
 
 .player-list {
   list-style: none;
 }
 
-.player-list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+.player-list-item:hover {
+  background-color: #131313;
+
+  border-top: 3px solid #000;
+  border-right: 3px solid #000;
+  border-bottom: 3px solid #000;
 }
 
-.player-info{
+.player-list-item:hover > .add-black-list {
+  display: block;
+}
+.player-list-item:hover > .player-info {
+  opacity: 0;
+}
+.player-list-item:hover > .player-score {
+  opacity: 0;
+}
+
+.player-black-list {
+  background-color: #131313;
+  color: white;
+
+  border-top: 3px solid #000;
+  border-right: 3px solid #000;
+  border-bottom: 3px solid #000;
+}
+
+.player-black-item:hover {
+  background-color: #372b51;
+  border-top: 3px solid #453469;
+  border-right: 3px solid #302742;
+  border-bottom: 3px solid #211c2c;
+  box-shadow: 0 0 8px #000;
+}
+
+.player-black-list:hover > .remove-black-list {
+  display: block;
+}
+.player-black-list:hover > .add-black-list {
+  display: none;
+}
+
+.add-black-list,
+.remove-black-list {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  text-align: center;
+  color: white;
+}
+
+.player-info {
   display: flex;
   justify-content: flex-start;
-  gap:  5px;
+  gap: 5px;
+  color: inherit;
 }
 
 .player-iter {
   font-size: 1.5em;
-  color: #d9bef3;
+  color: inherit;
 }
 
 .player-name {
   font-size: 1.5em;
-  color: #d9bef3;
   font-size: bold;
 }
 .player-score {
@@ -84,8 +136,8 @@
   font-size: var(--secondarySize);
   color: #000;
 
-  box-shadow: 0 0 8px #d9bef3;
-  background-color: #d9bef3;
+  box-shadow: 0 0 8px white;
+  background-color: white;
   border-radius: 3px;
 }
 
