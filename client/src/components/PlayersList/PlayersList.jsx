@@ -4,6 +4,7 @@ import { buttonHoverEffect, useBlackList } from "../../common";
 import "./playersList.css";
 function PlayersList() {
   const user = useSelector(({ game }) => game);
+  console.log(user)
   const { pushBlackList, popBlackList, isInBlackList } = useBlackList();
 
   const handleClickPlayerItem = (user) => {

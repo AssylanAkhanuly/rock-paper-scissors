@@ -25,6 +25,7 @@ const rooms = [];
 
 const onMessage = (message) => {
   let parsedMessage = tryParseMessage(message);
+  console.log(parsedMessage);
   const room = rooms[parsedMessage.user.roomIndex];
   const user = room.getUser(parsedMessage.user.connectionID);
   if (user) {
@@ -88,8 +89,10 @@ const onRequest = (request) => {
 
   user.connection.on("message", onMessage);
   user.connection.on("close", () => {
-    rooms[roomIndex].disconnectUser(user.data.connectionID);
-    if (!rooms[roomIndex].connections.length) rooms.splice(roomIndex, 1);
+    if (rooms[roomIndex]) {
+      rooms[roomIndex].disconnectUser(user.data.connectionID);
+      if (!rooms[roomIndex].connections.length) rooms.splice(roomIndex, 1);
+    }
   });
 };
 

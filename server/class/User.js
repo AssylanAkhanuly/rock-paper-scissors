@@ -5,10 +5,12 @@ export default class User {
   data = null;
 
   constructor({ connection, data }) {
-    const { score } = data;
+    let { score, blackList } = data;
+
+    if (!Array.isArray(blackList)) blackList = [blackList];
 
     this.connection = connection;
-    this.data = { ...data, isReady: false, score: parseInt(score) };
+    this.data = { ...data, isReady: false, score: parseInt(score), blackList };
   }
   sendMessage(message) {
     let stringMessage = message;

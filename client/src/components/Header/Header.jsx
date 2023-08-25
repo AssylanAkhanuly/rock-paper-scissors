@@ -1,21 +1,17 @@
-import React, { useEffect, useRef } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import React, { useRef } from "react";
+import { useSelector } from "react-redux";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import {
   buttonClickEffect,
   buttonHoverEffect,
   useConnection,
 } from "../../common";
-import "./header.css";
-import { useSelector } from "react-redux";
-import History from "../History/History";
-import backgroundMusic from "../../assets/backgroundMusic.mp3";
 import BlackList from "../BlackList/BlackList";
-import { WAITING } from "../../redux/gameSlice";
+import History from "../History/History";
+import "./header.css";
 function Header() {
   const user = useSelector(({ game }) => game);
-  const backgroundAudioRef = useRef();
-
   const modalRef = useRef();
   const { closeConnection } = useConnection();
   const logout = () => {
