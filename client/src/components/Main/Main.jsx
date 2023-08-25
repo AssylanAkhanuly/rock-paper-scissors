@@ -1,20 +1,18 @@
-import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { mainURL, objToQueryString, useConnection } from "../../common";
+import React from "react";
+import { useSelector } from "react-redux";
 import {
   GAME_FINISH,
   GAME_PRESTART,
   GAME_START,
   TIE,
-  WAITING,
-  update,
+  WAITING
 } from "../../redux/gameSlice";
-import LoadingScreen from "../LoadingScreen/LoadingScreen";
-import "./main.css";
-import ReadyScreen from "../ReadyScreen/ReadyScreen";
-import GameScreen from "../GameScreen/GameScreen";
 import FinishScreen from "../FinishScreen/FinishScreen";
+import GameScreen from "../GameScreen/GameScreen";
+import LoadingScreen from "../LoadingScreen/LoadingScreen";
+import ReadyScreen from "../ReadyScreen/ReadyScreen";
 import TieScreen from "../TieScreen/TieScreen";
+import "./main.css";
 function Main() {
   const user = useSelector(({ game }) => game);
 

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import {
@@ -9,9 +9,13 @@ import {
 import "./header.css";
 import { useSelector } from "react-redux";
 import History from "../History/History";
+import backgroundMusic from "../../assets/backgroundMusic.mp3";
 import BlackList from "../BlackList/BlackList";
+import { WAITING } from "../../redux/gameSlice";
 function Header() {
   const user = useSelector(({ game }) => game);
+  const backgroundAudioRef = useRef();
+
   const modalRef = useRef();
   const { closeConnection } = useConnection();
   const logout = () => {
@@ -81,10 +85,13 @@ function Header() {
                 Black List
               </Tab>
             </TabList>
-          
-            <TabPanel>  <History /></TabPanel>
+
             <TabPanel>
-              <BlackList/>
+              {" "}
+              <History />
+            </TabPanel>
+            <TabPanel>
+              <BlackList />
             </TabPanel>
           </Tabs>
         </div>

@@ -42,9 +42,6 @@ export const whoWin = (users) => {
 
   const selections = [...new Set(users.map((user) => user.data.selection))];
 
-  console.log("selections:", selections);
-  console.log("include function: ", selections.includes(0));
-
   if (selections.length === 1) return { winners, loosers, isTie: true };
   else if (selections.length === 2 && selections.includes(0)) {
     return {

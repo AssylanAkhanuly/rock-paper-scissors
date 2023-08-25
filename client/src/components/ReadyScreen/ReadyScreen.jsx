@@ -8,7 +8,7 @@ function ReadyScreen() {
     <div className="ready">
       <div className="ready-content">
         <h1 className="ready-title">Ready?</h1>
-        <p>enter a username to join, or leave it blank to get a random one</p>
+        <p>The game will start after all users are ready</p>
       </div>
 
       <button

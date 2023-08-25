@@ -1,12 +1,10 @@
-import buttonHoverSound from "./assets/buttonHover.mp3";
-import buttonClickSound from "./assets/buttonClick.mp3";
-import backgroundMusic from "./assets/backgroundMusic.mp3";
-import messageSound from "./assets/messageSound.mp3";
-import { useEffect, useState } from "react";
-import { w3cwebsocket } from "websocket";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { w3cwebsocket } from "websocket";
+import buttonClickSound from "./assets/buttonClick.mp3";
+import buttonHoverSound from "./assets/buttonHover.mp3";
+import messageSound from "./assets/messageSound.mp3";
 import { clear, customUpdate, update } from "./redux/gameSlice";
-import { stringify } from "uuid";
 
 export const mainURL = "ws://localhost:8080/";
 export const objToQueryString = (obj) => {
@@ -34,9 +32,8 @@ export const buttonHoverEffect = (e) => {
 export const buttonClickEffect = () => {
   new Audio(buttonClickSound).play();
 };
-export const startBackgroundMusic = () => {
-  new Audio(backgroundMusic).play();
-};
+
+
 export const messageSoundEffect = () => {
   try {
     new Audio(messageSound).play();
@@ -94,10 +91,13 @@ export function useConnection() {
     console.log("Connection is established");
   };
 
-  const onMessage = (message) => {
-    const parsedMessage = JSON.parse(message.data);
-    dispatch(update(parsedMessage));
-  };
+  const onMessage = useCallback(
+    (message) => {
+      const parsedMessage = JSON.parse(message.data);
+      dispatch(update(parsedMessage));
+    },
+    [dispatch]
+  );
 
   const onClose = () => {
     console.log("Connection is lost");
@@ -109,14 +109,14 @@ export function useConnection() {
       const { users, messages, history, ...other } = user;
       const query = objToQueryString(other);
 
-      console.log("query:", query)
+      console.log("query:", query);
       connection = new w3cwebsocket(mainURL + query, "echo-protocol");
 
       connection.onopen = onOpen;
       connection.onmessage = onMessage;
       connection.onclose = onClose;
     }
-  }, [user]);
+  }, [user, onMessage]);
 
   return { sendMessage, closeConnection };
 }

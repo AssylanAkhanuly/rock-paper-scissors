@@ -1,11 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { buttonHoverEffect, useBlackList } from "../../common";
-import { customUpdate } from "../../redux/gameSlice";
 import "./playersList.css";
 function PlayersList() {
   const user = useSelector(({ game }) => game);
-  const dispatch = useDispatch();
   const { pushBlackList, popBlackList, isInBlackList } = useBlackList();
 
   const handleClickPlayerItem = (user) => {

@@ -18,7 +18,7 @@ function GameScreen() {
   const [selection, setSelection] = useState(0);
   const [state, setState] = useState("start");
   const screenRef = useRef();
-const {sendMessage} =useConnection();
+  const { sendMessage } = useConnection();
   const { secondsLeft, start } = useCountDown(5);
 
   useEffect(() => {
@@ -46,12 +46,12 @@ const {sendMessage} =useConnection();
     const newElement = document.getElementById(option);
     newElement.classList.add("active");
   };
-  
+
   return (
     <div className="game-screen">
       {secondsLeft >= 0 && (
-        <h1 className={state ==="start" ? "start-timer" : "finish-timer"}>
-          {state ==="start" ? secondsLeft : `Game finished in: ${secondsLeft}`}
+        <h1 className={state === "start" ? "start-timer" : "finish-timer"}>
+          {state === "start" ? secondsLeft : `Game finished in: ${secondsLeft}`}
         </h1>
       )}
       <div ref={screenRef} className="game-screen-content">

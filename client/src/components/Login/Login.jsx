@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { buttonClickEffect, startBackgroundMusic } from "../../common";
-import { SET_NAME, customUpdate, update } from "../../redux/gameSlice";
+import { customUpdate } from "../../redux/gameSlice";
 import "./login.css";
 function Login() {
   const user = useSelector(({ game }) => game);
@@ -9,7 +9,6 @@ function Login() {
   const dispatch = useDispatch();
 
   const handleEnter = () => {
-    startBackgroundMusic();
     buttonClickEffect();
 
     let newName = name;
@@ -23,8 +22,7 @@ function Login() {
         <h1 className="login-title">Welcome to ROCK-SCISSOR-PAPER</h1>
         <p>
           puzzle together in this modern yet familiar online stacker. play
-          against
-          friends and foes all over the world, or claim a spot on the
+          against friends and foes all over the world, or claim a spot on the
           leaderboards - the stacker future is yours!
         </p>
       </div>
